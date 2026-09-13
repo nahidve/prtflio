@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --color-paper: #f4f4f2;
+  --color-paper-dim: #ebeae7;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #151515;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-muted: #6b6b68;
+  --color-muted-on-dark: #a3a3a0;
+  --color-border: #dcdbd7;
+  --color-border-on-dark: #2a2a2a;
+
+  --container-max: 1360px;
+  --container-pad: 24px;
+
+  --ease-out-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-white: var(--color-white);
+  --color-black: var(--color-black);
+  --color-muted: var(--color-muted);
+  --color-muted-on-dark: var(--color-muted-on-dark);
+  --color-border: var(--color-border);
+  --color-border-on-dark: var(--color-border-on-dark);
+
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+
+  --breakpoint-xs: 420px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark light;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.stacked-logos__item {
+  animation: stacked-logos-cycle calc(var(--duration) * 1s) ease-in-out infinite;
+  animation-delay: calc(
+    (var(--i) * (var(--duration) / var(--items))) * 1s +
+      (var(--index) * var(--stagger) * 1s)
+  );
+  opacity: 0;
+}
+
+@keyframes stacked-logos-cycle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  4%,
+  22% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  28% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
