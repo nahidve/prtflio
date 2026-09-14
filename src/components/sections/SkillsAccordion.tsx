@@ -62,20 +62,32 @@ export function SkillsAccordion() {
           {skillGroups.map((group, i) => {
             const isOpen = open === i;
             return (
-              <div key={group.index}>
+              <div key={group.index} className="group/row">
                 <button
                   onClick={() => setOpen(isOpen ? -1 : i)}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-300 hover:bg-white/3 md:px-4 md:-mx-4"
                 >
                   <div className="flex items-center gap-6">
-                    <span className="w-12 text-sm text-muted-on-dark">({group.index})</span>
-                    <span className="font-display text-xl font-medium md:text-2xl">
+                    <span
+                      className={`w-12 font-mono text-sm tabular-nums transition-colors duration-300 ${
+                        isOpen ? "text-white" : "text-muted-on-dark"
+                      }`}
+                    >
+                      ({group.index})
+                    </span>
+                    <span
+                      className={`font-display text-xl font-medium tracking-tight transition-colors duration-300 md:text-2xl ${
+                        isOpen ? "text-white" : "text-white/80 group-hover/row:text-white"
+                      }`}
+                    >
                       {group.name}
                     </span>
                   </div>
                   <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/25 transition-transform duration-300 ${
-                      isOpen ? "rotate-45" : ""
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                      isOpen
+                        ? "rotate-45 border-white bg-white text-ink"
+                        : "border-white/25 group-hover/row:border-white/60"
                     }`}
                   >
                     <PlusIcon className="h-3 w-3" />
@@ -96,8 +108,19 @@ export function SkillsAccordion() {
                           {group.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          {group.tags.map((tag) => (
-                            <Pill key={tag}>{tag}</Pill>
+                          {group.tags.map((tag, tagIndex) => (
+                            <motion.div
+                              key={tag}
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{
+                                duration: 0.35,
+                                delay: 0.05 + tagIndex * 0.04,
+                                ease: easeOutEditorial,
+                              }}
+                            >
+                              <Pill>{tag}</Pill>
+                            </motion.div>
                           ))}
                         </div>
                       </div>
@@ -110,8 +133,8 @@ export function SkillsAccordion() {
         </div>
 
         <Reveal className="mt-12">
-          <Button href="/studio" variant="inverse">
-            More about me
+          <Button href="/contact" variant="inverse">
+            Let&rsquo;s talk
           </Button>
         </Reveal>
       </Container>

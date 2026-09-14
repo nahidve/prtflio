@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/data/siteConfig";
 import { navStagger, navItem } from "@/lib/motion-variants";
+import { useLenis } from "@/lib/LenisProvider";
 import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -17,6 +19,17 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    lenis?.stop();
+    return () => {
+      document.body.style.overflow = original;
+      lenis?.start();
+    };
+  }, [menuOpen, lenis]);
 
   return (
     <>
@@ -64,12 +77,22 @@ export function Navbar() {
           {/* Hamburger Icon */}
           <motion.button
             variants={navItem}
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
-            className="flex flex-col gap-1.5 p-2 hover:opacity-75 transition-opacity cursor-pointer"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            whileTap={{ scale: 0.9 }}
+            className="group relative flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-full transition-colors hover:bg-ink/5 cursor-pointer"
           >
-            <span className="block h-[2px] w-6 bg-ink rounded-full" />
-            <span className="block h-[2px] w-6 bg-ink rounded-full" />
+            <motion.span
+              animate={menuOpen ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3, ease: [0.65, 0, 0.35, 1] }}
+              className="block h-[2px] w-5 origin-center rounded-full bg-ink"
+            />
+            <motion.span
+              animate={menuOpen ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3, ease: [0.65, 0, 0.35, 1] }}
+              className="block h-[2px] w-5 origin-center rounded-full bg-ink"
+            />
           </motion.button>
         </div>
       </motion.header>

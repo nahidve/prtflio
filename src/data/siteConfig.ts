@@ -14,7 +14,7 @@ export const siteConfig = {
     { label: "Twitter", href: "https://x.com/xizt_7" },
   ],
   nav: [
-    { label: "Studio", href: "/studio" },
+    { label: "Studio", href: "/" },
     { label: "Projects", count: "6", href: "/projects" },
     { label: "Contact", href: "/contact" },
   ],

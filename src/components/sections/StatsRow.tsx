@@ -64,9 +64,13 @@ export function StatsRow({ theme = "light" }: { theme?: "light" | "dark" }) {
                 />
               </div>
               <span className="font-display relative z-10 text-6xl font-medium text-white/15">NA</span>
+              <div className="absolute top-6 left-6 flex items-center gap-2 text-xs font-medium text-white/50">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                Available for work
+              </div>
             </motion.div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-              <p className="text-sm font-medium text-white">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
+              <p className="text-sm font-medium leading-snug text-white">
                 Your product idea starts with a conversation.
               </p>
               <Button href="/contact" variant="inverse" className="mt-4 !px-4 !py-2 text-xs">
@@ -89,13 +93,21 @@ export function StatsRow({ theme = "light" }: { theme?: "light" | "dark" }) {
               {stats.map((stat) => (
                 <StaggerItem
                   key={stat.index}
-                  className={`group flex flex-col justify-between gap-10 rounded-2xl p-6 transition-colors duration-300 ${
+                  className={`group relative flex flex-col justify-between gap-10 overflow-hidden rounded-2xl border p-6 transition-all duration-300 ${
                     isDark
-                      ? "bg-white/[0.04] hover:bg-white/[0.07]"
-                      : "bg-white hover:bg-white/80"
+                      ? "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.07]"
+                      : "border-border bg-white hover:-translate-y-1 hover:border-ink/15 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.25)]"
                   }`}
                 >
-                  <div className="flex items-start justify-between">
+                  <span
+                    className={`font-display pointer-events-none absolute -top-6 -right-2 text-8xl leading-none font-semibold select-none ${
+                      isDark ? "text-white/5" : "text-ink/4"
+                    }`}
+                  >
+                    {stat.index}
+                  </span>
+
+                  <div className="relative flex items-start justify-between">
                     <motion.span
                       className="font-display flex items-baseline text-4xl font-medium tracking-tight md:text-5xl"
                       initial={{ opacity: 0, y: 10 }}
@@ -106,11 +118,8 @@ export function StatsRow({ theme = "light" }: { theme?: "light" | "dark" }) {
                       <CountUp to={stat.to} duration={1.4} />
                       {stat.suffix}
                     </motion.span>
-                    <span className={`text-xs ${isDark ? "text-muted-on-dark" : "text-muted"}`}>
-                      {stat.index}
-                    </span>
                   </div>
-                  <span className={`text-sm ${isDark ? "text-muted-on-dark" : "text-muted"}`}>
+                  <span className={`relative text-sm ${isDark ? "text-muted-on-dark" : "text-muted"}`}>
                     {stat.label}
                   </span>
                 </StaggerItem>

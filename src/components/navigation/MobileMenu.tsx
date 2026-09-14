@@ -26,14 +26,17 @@ export function MobileMenu({
             <Link href="/" onClick={onClose} className="font-display text-lg font-medium">
               nahid<span className="align-super text-[0.6em]">®</span>
             </Link>
-            <button
+            <motion.button
               onClick={onClose}
               aria-label="Close menu"
-              className="relative flex h-8 w-8 items-center justify-center"
+              whileHover={{ rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.3, ease: easeOutEditorial }}
+              className="relative flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 cursor-pointer"
             >
-              <span className="absolute h-[1.5px] w-6 rotate-45 bg-white" />
-              <span className="absolute h-[1.5px] w-6 -rotate-45 bg-white" />
-            </button>
+              <span className="absolute h-[1.5px] w-5 rotate-45 rounded-full bg-white" />
+              <span className="absolute h-[1.5px] w-5 -rotate-45 rounded-full bg-white" />
+            </motion.button>
           </div>
 
           <nav className="flex flex-1 flex-col justify-center gap-4 px-6 md:px-10">
@@ -47,9 +50,14 @@ export function MobileMenu({
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className="font-display text-4xl font-medium tracking-tight"
+                  className="group font-display inline-flex items-baseline gap-3 text-4xl font-medium tracking-tight transition-opacity hover:opacity-70"
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {"count" in item && item.count && (
+                    <span className="text-sm font-normal text-muted-on-dark">
+                      {item.count}
+                    </span>
+                  )}
                 </Link>
               </motion.div>
             ))}

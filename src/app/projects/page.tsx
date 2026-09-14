@@ -4,7 +4,6 @@ import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/animations/Reveal";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import MaskedHeading from "@/components/ui/MaskedHeading";
 
 export const metadata: Metadata = {
   title: "Projects — Nahid Azad",
@@ -19,23 +18,9 @@ export default function ProjectsPage() {
         <Reveal className="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <Eyebrow>{`(${projects.length})`}</Eyebrow>
-            <MaskedHeading
-              text="Projects."
-              tag="h1"
-              mediaType="image"
-              src={projects[0].thumbnail}
-              reveal="rise"
-              trigger="mount"
-              align="left"
-              weight={500}
-              tracking={-0.03}
-              lineHeight={1}
-              textScale={0.1}
-              className="font-display mt-4 text-ink"
-              fillScale={1.1}
-              parallax={12}
-              drift={10}
-            />
+            <h1 className="font-display mt-4 text-5xl font-medium tracking-tight text-ink md:text-6xl">
+              Projects.
+            </h1>
           </div>
           <p className="max-w-sm text-sm text-muted md:text-right">
             A complete record of full-stack products and AI/ML-powered

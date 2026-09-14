@@ -39,35 +39,43 @@ export function ProcessSection() {
           muted="from first idea to a system people actually use."
         />
 
-        <StaggerGroup className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <StaggerItem key={step.index} className="h-full">
-              <motion.div
-                className="flex h-full flex-col gap-6 rounded-2xl bg-white p-6"
-                whileHover={{ y: -6, boxShadow: "0 20px 40px -20px rgba(0,0,0,0.18)" }}
-                transition={{ duration: 0.35, ease: easeOutEditorial }}
-              >
-                <div className="flex items-center justify-between text-xs text-muted">
-                  <span className="flex gap-1">
-                    {steps.map((s) => (
-                      <span
-                        key={s.index}
-                        className={`h-1.5 w-1.5 rounded-full transition-colors duration-500 ${
-                          s.index <= step.index ? "bg-ink" : "bg-border"
-                        }`}
-                      />
-                    ))}
+        <div className="relative mt-16">
+          <div className="pointer-events-none absolute top-[2.05rem] right-0 left-0 hidden h-px bg-border lg:block" />
+
+          <StaggerGroup className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, i) => (
+              <StaggerItem key={step.index} className="h-full">
+                <motion.div
+                  className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-2xl border border-border bg-white p-6 transition-colors duration-300 hover:border-ink/20"
+                  whileHover={{ y: -6, boxShadow: "0 24px 48px -24px rgba(0,0,0,0.22)" }}
+                  transition={{ duration: 0.35, ease: easeOutEditorial }}
+                >
+                  <span className="font-display pointer-events-none absolute -top-6 -right-4 text-8xl leading-none font-semibold text-ink/4 transition-colors duration-300 select-none group-hover:text-ink/7">
+                    {step.index}
                   </span>
-                  <span>{step.index}</span>
-                </div>
-                <h3 className="font-display text-xl font-medium tracking-tight text-ink">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted">{step.body}</p>
-              </motion.div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+
+                  <div className="relative flex items-center justify-between">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper font-display text-sm font-medium text-ink transition-colors duration-300 group-hover:border-ink group-hover:bg-ink group-hover:text-white">
+                      {step.index}
+                    </span>
+                    {i < steps.length - 1 && (
+                      <span className="hidden text-muted transition-transform duration-300 group-hover:translate-x-1 lg:inline-block">
+                        →
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <h3 className="font-display text-xl font-medium tracking-tight text-ink">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm text-muted">{step.body}</p>
+                  </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
       </Container>
     </div>
   );
