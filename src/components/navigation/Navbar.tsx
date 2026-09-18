@@ -56,12 +56,12 @@ export function Navbar() {
           </motion.div>
 
           {/* Nav Items */}
-          <nav className="hidden items-center gap-10 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
             {siteConfig.nav.map((item) => (
               <motion.div key={item.label} variants={navItem}>
                 <Link
                   href={item.href}
-                  className="group relative text-sm font-medium text-ink transition-colors hover:text-black flex items-center"
+                  className="group relative flex items-center text-sm font-medium whitespace-nowrap text-ink transition-colors hover:text-black"
                 >
                   {item.label}
                   {"count" in item && item.count && (

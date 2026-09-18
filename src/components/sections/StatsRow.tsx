@@ -10,7 +10,8 @@ import { imageReveal, easeOutEditorial } from "@/lib/motion-variants";
 import { Button } from "@/components/ui/Button";
 import { Cover } from "@/components/ui/Cover";
 import CountUp from "@/components/ui/CountUp";
-import MagnetLines from "@/components/ui/MagnetLines";
+import { RippleTransition } from "@/components/ui/ripple-transition";
+import { projects } from "@/data/projects";
 
 const stats = [
   {
@@ -47,33 +48,30 @@ export function StatsRow({ theme = "light" }: { theme?: "light" | "dark" }) {
             variants={imageReveal}
             className="relative order-2 aspect-[3/4] overflow-hidden rounded-2xl bg-ink-soft lg:order-1 lg:col-span-4"
           >
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#2a2a2a] to-[#0a0a0a]"
-              whileHover={{ scale: 1.04 }}
-              transition={{ duration: 0.6, ease: easeOutEditorial }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center opacity-40">
-                <MagnetLines
-                  rows={7}
-                  columns={7}
-                  containerSize="120%"
-                  lineColor="#ffffff"
-                  lineWidth="1.5px"
-                  lineHeight="18px"
-                  baseAngle={-10}
-                />
-              </div>
-              <span className="font-display relative z-10 text-6xl font-medium text-white/15">NA</span>
-              <div className="absolute top-6 left-6 flex items-center gap-2 text-xs font-medium text-white/50">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Available for work
-              </div>
-            </motion.div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
+            <RippleTransition
+              images={projects.map((p) => p.thumbnail)}
+              className="absolute inset-0 h-full w-full"
+              borderRadius={0}
+              autoPlay
+              autoPlayInterval={3600}
+              autoPlayOrigin="random"
+              duration={1.4}
+              pinch
+              label="Preview of recent projects"
+            />
+            <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-2 text-xs font-medium text-white/70">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              Available for work
+            </div>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
               <p className="text-sm font-medium leading-snug text-white">
                 Your product idea starts with a conversation.
               </p>
-              <Button href="/contact" variant="inverse" className="mt-4 !px-4 !py-2 text-xs">
+              <Button
+                href="/contact"
+                variant="inverse"
+                className="pointer-events-auto mt-4 !px-4 !py-2 text-xs"
+              >
                 Let&rsquo;s talk
               </Button>
             </div>

@@ -45,6 +45,9 @@ export function VideoSmokeBackground({
 
     resize();
     window.addEventListener("resize", resize);
+    const parentEl = canvas.parentElement;
+    const resizeObserver = parentEl ? new ResizeObserver(resize) : null;
+    if (parentEl) resizeObserver!.observe(parentEl);
 
     // Dynamic fluid smoke particles/blobs
     const blobCount = 8;
@@ -150,6 +153,7 @@ export function VideoSmokeBackground({
 
     return () => {
       window.removeEventListener("resize", resize);
+      resizeObserver?.disconnect();
       document.removeEventListener("visibilitychange", onVisibilityChange);
       if (frame) cancelAnimationFrame(frame);
     };

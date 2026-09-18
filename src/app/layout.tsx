@@ -4,6 +4,8 @@ import "./globals.css";
 import { LenisProvider } from "@/lib/LenisProvider";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
+import { Preloader } from "@/components/animations/Preloader";
+import { PageTransition } from "@/components/animations/PageTransition";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -30,9 +32,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
+        <Preloader />
         <LenisProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
         </LenisProvider>
       </body>

@@ -16,6 +16,9 @@ export const siteConfig = {
   nav: [
     { label: "Studio", href: "/" },
     { label: "Projects", count: "6", href: "/projects" },
+    { label: "Client Engagements", href: "/client-engagements" },
+    { label: "Monthly Progress", href: "/monthly-progress" },
+    { label: "Proof of Concept", href: "/proof-of-concept" },
     { label: "Contact", href: "/contact" },
   ],
   services: [
