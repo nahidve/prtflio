@@ -60,7 +60,7 @@ export const projects: Project[] = [
     slug: "gotrip",
     title: "GoTrip",
     year: 2026,
-    category: "Full-Stack + AI/ML",
+    category: "Full-Stack Platform",
     description:
       "A luxury travel platform with a member concierge portal, an editorial travel journal, and an AI system that drafts and publishes content across channels automatically.",
     overview:
@@ -143,5 +143,32 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Node.js", "Socket.io", "Tailwind CSS"],
     liveUrl: "https://texts-frontend-swart.vercel.app",
     githubUrl: "",
+  },
+  {
+    slug: "tea",
+    title: "Tea",
+    year: 2026,
+    category: "Full-Stack Platform",
+    description:
+      "A modern, lightweight social media platform with rich post creation, real-time messaging, and ephemeral stories.",
+    overview:
+      "Tea is a social media platform built for real-time interaction. Posts support text, up to 6 images, carousels, GIFs via the Giphy API, and polls, with live @username suggestions while composing. Direct messages run in real time with live typing indicators through Pusher, and Stories add ephemeral photo/video posts with seen/unseen status rings and a timed progress viewer. Beyond posting, users can like and comment on posts, follow and unfollow each other, bookmark posts for later, and track it all through an activity feed for likes, comments, and follows.",
+    role: "Full-Stack Developer",
+    results: [
+      { label: "Post types supported", value: "5" },
+      { label: "Real-time messaging", value: "Live" },
+      { label: "Story status tracking", value: "Seen/Unseen" },
+    ],
+    thumbnail: "/projects/tea/feed.png",
+    thumbnailPosition: "top",
+    heroImage: "/projects/tea/feed.png",
+    heroImageSize: { width: 1920, height: 918 },
+    gallery: [
+      { src: "/projects/tea/profile.png", alt: "Tea — user profile with posts, stats, and profile music", width: 1920, height: 1112 },
+    ],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Pusher"],
+    liveUrl: "https://tea-lovat.vercel.app",
+    githubUrl: "",
+    featured: true,
   },
 ];
