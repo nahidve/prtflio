@@ -260,4 +260,43 @@ export const projects: Project[] = [
     githubUrl: "",
     featured: true,
   },
+  {
+    slug: "tomato",
+    title: "Tomato",
+    year: 2026,
+    category: "Full-Stack Platform",
+    description:
+      "A modern food ordering and delivery web application with category exploration, cart management, and real-time order status tracking.",
+    overview:
+      "Tomato is a full-stack food delivery and ordering web application designed for seamless customer dining experiences. Users can explore curated culinary categories—from salads and rolls to pasta and desserts—filter dishes by price, manage their cart, and track order lifecycles from placement to delivery in real time.",
+    role: "Full-Stack Developer",
+    results: [
+      { label: "Menu categories", value: "8+" },
+      { label: "Order lifecycle stages", value: "Live" },
+      { label: "Responsive experience", value: "100%" },
+    ],
+    thumbnail: "/projects/tomato/homepage.png",
+    thumbnailPosition: "top",
+    heroImage: "/projects/tomato/homepage.png",
+    heroImageSize: { width: 708, height: 1024 },
+    gallery: [
+      {
+        src: "/projects/tomato/orders.png",
+        alt: "Tomato — My Orders dashboard with order status tracking",
+        width: 1024,
+        height: 615,
+      },
+    ],
+    technologies: [
+      "React",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "CSS",
+    ],
+    liveUrl: "",
+    githubUrl: "",
+    featured: true,
+  },
 ];
